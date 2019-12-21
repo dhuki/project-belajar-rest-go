@@ -29,14 +29,6 @@
   revision = "3427c32cb71afc948325f299f040e53c1dd78979"
   version = "v1.2.0"
 
-[[projects]]
-  digest = "1:ba6ec76fbb5c0697668666779c8a3c185bd517fe666a0e16785e94e361210e6d"
-  name = "gopkg.in/matryer/respond.v1"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "7ca2372f541a6f714cc7f2a7118b679795b3952c"
-  version = "v1.0.1"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
@@ -44,7 +36,6 @@
     "github.com/google/uuid",
     "github.com/gorilla/mux",
     "github.com/lib/pq",
-    "gopkg.in/matryer/respond.v1",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

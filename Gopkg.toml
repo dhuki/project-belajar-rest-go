@@ -29,6 +29,10 @@
   go-tests = true
   unused-packages = true
 
+[metadata.heroku]
+  root-package = "github.com/belajarRestApi5"
+  install = [ "./..." ]
+
 [[constraint]]
   name = "github.com/gorilla/mux"
   version = "1.7.3"
