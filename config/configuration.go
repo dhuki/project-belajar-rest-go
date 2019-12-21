@@ -2,7 +2,6 @@ package config
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -28,14 +27,16 @@ func (s *Server) Initialize() {
 	// dbName := os.Getenv("db.name")
 	// dbHost := os.Getenv("db.host")
 
-	username := "ijjfgiyjcbrznd"
-	password := "028ccc705a477aabf05483a69471b3cd349122d598495748014d446c7aad41dd"
-	dbName := "d4ppbeeimehina"
-	dbHost := "ec2-174-129-255-21.compute-1.amazonaws.com"
+	// username := "ijjfgiyjcbrznd"
+	// password := "028ccc705a477aabf05483a69471b3cd349122d598495748014d446c7aad41dd"
+	// dbName := "d4ppbeeimehina"
+	// dbHost := "ec2-174-129-255-21.compute-1.amazonaws.com"
 
-	//(format without printing)
-	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, username, dbName, password) //Build connection string
-	fmt.Println(dbURI)
+	// //(format without printing)
+	// dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, username, dbName, password) //Build connection string
+	// fmt.Println(dbURI)
+
+	dbURI := "postgres://ijjfgiyjcbrznd:028ccc705a477aabf05483a69471b3cd349122d598495748014d446c7aad41dd@ec2-174-129-255-21.compute-1.amazonaws.com:5432/d4ppbeeimehina"
 
 	conn, err := sql.Open("postgres", dbURI)
 
@@ -58,7 +59,7 @@ func (s *Server) SetupServer() {
 }
 
 func (s *Server) Run() {
-	log.Fatal(http.ListenAndServe(nil, s.Router))
+	log.Fatal(http.ListenAndServe(":8000", s.Router))
 }
 
 func MainServerStart() {
