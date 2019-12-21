@@ -29,7 +29,7 @@
   go-tests = true
   unused-packages = true
 
-[metadata.heroku
+[metadata.heroku]
   root-package = "github.com/belajarRestApi5"
   install = [ "./..." ]
 
