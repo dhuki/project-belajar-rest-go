@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/belajarRestApi5/services/lecturer"
 	"github.com/gorilla/mux"
@@ -59,7 +60,9 @@ func (s *Server) SetupServer() {
 }
 
 func (s *Server) Run() {
-	log.Fatal(http.ListenAndServe(":8000", s.Router))
+	port := os.Getenv("PORT")
+
+	log.Fatal(http.ListenAndServe(port, s.Router))
 }
 
 func MainServerStart() {
