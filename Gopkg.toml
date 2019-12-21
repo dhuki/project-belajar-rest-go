@@ -29,6 +29,10 @@
   go-tests = true
   unused-packages = true
 
+[metadata.heroku]
+  root-package = "github.com/belajarRestApi5"
+  install = [ "./..." ]
+
 [[constraint]]
   name = "github.com/gorilla/mux"
   version = "1.7.3"
@@ -52,7 +56,3 @@
 [[constraint]]
   name = "gopkg.in/matryer/respond.v1"
   version = "1.0.1"
-
-[[metadata.heroku]
-  root-packages= "github.com/belajarRestApi5"
-  install = [ "./..." ]
