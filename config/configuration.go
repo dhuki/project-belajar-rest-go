@@ -58,7 +58,7 @@ func (s *Server) SetupServer() {
 }
 
 func (s *Server) Run() {
-	log.Fatal(http.ListenAndServe(":8000", s.Router))
+	log.Fatal(http.ListenAndServe(nil, s.Router))
 }
 
 func MainServerStart() {
