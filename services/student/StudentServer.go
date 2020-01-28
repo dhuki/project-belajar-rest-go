@@ -1,18 +1,16 @@
-package lecturer
+package student
 
 import (
 	"database/sql"
-	"os"
 
 	"github.com/gorilla/mux"
 )
 
-type LecturerServer struct {
+type StudentServer struct {
 	DB     *sql.DB
 	Router *mux.Router
-	Log    *os.File
 }
 
-func (s *LecturerServer) Start() {
+func (s *StudentServer) Start() {
 	s.routes()
 }

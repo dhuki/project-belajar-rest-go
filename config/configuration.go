@@ -7,8 +7,11 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/belajarRestApi5/services/lecture"
 	"github.com/belajarRestApi5/services/lecturer"
+	"github.com/belajarRestApi5/services/student"
 	"github.com/gorilla/mux"
+	"github.com/go-redis/redis"
 	_ "github.com/lib/pq"
 )
 
@@ -17,6 +20,7 @@ type Server struct {
 	Router *mux.Router
 }
 
+// configuration deploy
 func (s *Server) Initialize() {
 
 	// err := godotenv.Load() //question why we should import this while not used but it make works
@@ -46,6 +50,16 @@ func (s *Server) Initialize() {
 		log.Fatal(err)
 	}
 
+	// 0666 is chmod meaning permission in that file (0666 -> can write (write something to the file) /read (see the file) )
+	// os.O_CREATE -> can append data to file
+	f, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// log to be written in f (which is file)
+	log.SetOutput(f)
+
 	s.DB = conn
 	s.Router = mux.NewRouter()
 }
@@ -57,7 +71,30 @@ func (s *Server) SetupServer() {
 		Router: s.Router,
 	}
 
+	serverStudent := &student.StudentServer{
+		DB:     s.DB,
+		Router: s.Router,
+	}
+
+	serverLecture := &lecture.LectureServer{
+		DB:     s.DB,
+		Router: s.Router,
+	}
+
 	serverLecturer.Start()
+	serverStudent.Start()
+	serverLecture.Start()
+}
+
+func (s *Server) SetupRedis() {
+	client := redis.NewClient(&redis.Options{
+		Addr: "localhost:6379",
+		Password: "",
+		DB: 0,
+	})
+
+	pong, err := client.Ping().Result()
+	fmt.Println(pong, err)
 }
 
 func (s *Server) Run() {
@@ -66,7 +103,7 @@ func (s *Server) Run() {
 
 // Get the Port from the environment so we can run on Heroku
 func GetPort() string {
-	var port = os.Getenv("PORT")
+	var port = os.Getenv("PORT") // find out why we need to check port, especially when deploy
 	// Set a default port if there is nothing in the environment
 	if port == "" {
 		port = "4747"
@@ -80,5 +117,6 @@ func MainServerStart() {
 
 	mainServer.Initialize()
 	mainServer.SetupServer()
+	//mainServer.SetupRedis()
 	mainServer.Run()
 }

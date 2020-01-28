@@ -1,0 +1,4 @@
+2020/01/02 16:33:24 strconv.Atoi: parsing "8c62e9d6-6744-4a89-9ab0-23fe7fd55498": invalid syntax
+2020/01/02 16:33:45 strconv.Atoi: parsing "8c62e9d6-6744-4a89-9ab0-23fe7fd55498": invalid syntax
+2020/01/02 17:49:25 strconv.Atoi: parsing "8c62e9d6-6744-4a89-9ab0-23fe7fd55498": invalid syntax
+2020/01/02 17:58:05 Lecturer Controller - getLecturer strconv.Atoi: parsing "8c62e9d6-6744-4a89-9ab0-23fe7fd55498": invalid syntax

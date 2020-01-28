@@ -3,6 +3,7 @@ package lecturer
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -50,12 +51,13 @@ func (s *LecturerServer) getLecturer() http.HandlerFunc {
 
 		var lecturer Lecturer
 
-		// lecturer.ID, _ = strconv.Atoi(params["id"]) //convert from string to int (strconv.Atoi return two params -> value, error)
+		//lecturer.ID, _ = strconv.Atoi(params["id"]) //convert from string to int (strconv.Atoi return two params -> value, error)
 
-		lecturer.ID = "8c62e9d6-6744-4a89-9ab0-23fe7fd55498"
+		//lecturer.ID = "8c62e9d6-6744-4a89-9ab0-23fe7fd55498"
 
 		value, error := strconv.Atoi(params["id"])
 		if error != nil {
+			log.Println("Lecturer Controller - getLecturer", error.Error())
 			response.Success = false
 			response.Message = error.Error()
 			utils.SendError(w, http.StatusInternalServerError, response)

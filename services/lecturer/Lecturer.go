@@ -31,7 +31,6 @@ func (l *Lecturer) getAllLecturer(db *sql.DB) ([]Lecturer, error) {
 	var lecturers []Lecturer
 
 	//if rows.Next() { // check if query has next value
-
 	for rows.Next() {
 
 		if lecturers == nil {

@@ -12,6 +12,7 @@ func (s *LecturerServer) routes() {
 	s.Router.Use(s.loggingMiddleware)
 }
 
+// middleware
 func (s *LecturerServer) Validate(h http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// it will execute later after this line code executed because
